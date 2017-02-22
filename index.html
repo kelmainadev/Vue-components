@@ -1,0 +1,116 @@
+<html>
+    <head>
+        <script src="https://unpkg.com/vue/dist/vue.js"></script>
+        
+    </head>
+    <body>
+	
+<div id="app">
+  {{message}}
+</div>
+
+<div id="app-2">
+  <span v-bind:title="message">
+    Hovering for a few seconds you will see a title!
+  </span>
+</div>
+
+<div id="app-3">
+  <p v-if="seen">Now you see me.</p>
+</div>
+
+<div id="app-4">
+  <ol>
+    <li v-for="todo in todos">{{todo.text}}</li>
+  </ol>
+</div>
+
+<div id="app-5">
+  <p>{{message}}</p>
+  <button v-on:click="reverseMessage">Reverse</button>
+</div>
+
+<div id="app-6">
+  <p>{{message}}</p>
+  <input type="text" v-model="message" />
+</div>
+
+<div id="app-7">
+  <h3>Testing Components</h3>
+  <ol>
+    <todo-item v-for="todo in todos" v-bind:todo="todo"></todo-item>
+  </ol>
+</div>
+<script type="text/javascript">
+	var app = new Vue({
+  el: '#app',
+  data: {
+    message: 'hello, world!',
+  }
+});
+
+var app2 = new Vue({
+  el: '#app-2',
+  data: {
+    message: 'Loaded!!'
+  }
+});
+
+var app3 = new Vue({
+  el: '#app-3',
+  data: {
+    seen: true
+  }
+});
+
+var app4 = new Vue({
+  el: '#app-4',
+  data: {
+    todos: [
+      { text: 'You can be at Home' },
+      { text: 'You Can Login' },
+      { text: 'You can register' },
+    ]
+  }
+});
+
+var app5 = new Vue({
+  el: '#app-5',
+  data: {
+    message: 'Hello from app 5!'
+  },
+  methods: {
+    reverseMessage: function() {
+      this.message = this.message.split('').reverse().join('');
+    }
+  }
+});
+
+var app6 = new Vue({
+  el: '#app-6',
+  data: {
+    message: 'Hello, world!'
+  }
+});
+
+Vue.component('todo-item', {
+  props: ['todo'],
+  template: '<li>{{todo.text}}</li>',
+});
+
+var app7 = new Vue({
+  el: '#app-7',
+  data: {
+    todos: [
+      {text: 'Home'},
+      {text: 'Registration'},
+      {text: 'Login'}
+    ]
+  }
+})
+
+	
+</script>
+	
+    </body>
+</html>
